@@ -22,5 +22,16 @@ func main() {
 // What does "package" mean? (Package == Project == Workspace)
 // R: A package is a collection of Go source files that reside in the same directory. It is used to organize the code and to make it reusable.
 // Types of packages:
-// 1. Executable package: It is used to create an executable program. It contains the main function.
-// 2. Reusable package: It is used to create a reusable code. It does not contain the main function.
+// 1. Executable package: It is used to create an executable program. It contains the main function. (package main)
+// 2. Reusable package: It is used to create a reusable code. It does not contain the main function. (package <package_name>)
+
+
+// What does "import" mean?
+// R: The import keyword is used to import the packages in the Go program. It is used to use the code from the other packages.
+
+
+// File organization in Go:
+// Top level: package declaration
+// Next level: import statements
+// Next level: function declarations
+
