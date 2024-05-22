@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"net/http"
+	"time"
 )
 
 func main() {
@@ -40,7 +41,12 @@ func main() {
 	// This also works the same as the above code
 	// This waits for the channel to return a value and then calls the checkLink function
 	for l := range c {
-		go checkLink(l, c)
+		// Function literal: same as an anonymous function
+		go func (link string) {
+			// Adding a delay of 5 seconds
+			time.Sleep(5 * time.Second)
+			checkLink(link, c)
+		}(l)
 	
 	}
 	
@@ -49,13 +55,18 @@ func main() {
 func checkLink(link string, c chan string) {
 	_, err := http.Get(link)
 	if err != nil {
+		// Printing the error message
 		fmt.Println(link, "might be down!")
+		
+
 		// Sending data to the channel
 		c <- link
 		return
 	}
 
+	// Printing the success message
 	fmt.Println(link, "is up!")
+
 	// Sending data to the channel
 	c <- link
 }	
